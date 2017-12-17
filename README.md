@@ -14,7 +14,7 @@ Omitted as it does not contain a programming section.
 ### [Homework 3: FOL Inference](project3)
 Build a simplified FOL solver implementing forward-chaining algorithm.
 
-### [Homework 4: Naive Bayes - Spam Detection](project4)
+### [Homework 4: Naive Bayes (Spam Detection)](project4)
 Create a Naive Bayes classifier for detecting e-mail spam, and test it on a publicly available spam dataset using 5-fold cross-validation.
 
 ## Disclaimer
