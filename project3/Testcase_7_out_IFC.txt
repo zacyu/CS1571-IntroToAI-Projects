@@ -1,0 +1,33 @@
+------------------------------------ Given ------------------------------------
+Rule Parent(var0, var1) ^ Parent(var0, var2) ^ Distinct(var1, var2) -> Sibling(var1, var2)
+Rule Parent(var0, var1) ^ Parent(var2, var3) ^ Sibling(var0, var2) -> Cousin(var1, var3)
+Rule Distinct(var0, var1) -> Distinct(var1, var0)
+Fact Parent(Lisa, Eric)
+Fact Parent(Lisa, Rachel)
+Fact Parent(Speed, Lisa)
+Fact Parent(Speed, Jay)
+Fact Parent(Jay, Frances)
+Fact Distinct(Eric, Rachel)
+Fact Distinct(Lisa, Jay)
+------------------------------------ Promt ------------------------------------
+Show that Sibling(Frances, Rachel)
+------------------------------------ Proof ------------------------------------
+Failed
+------------------------------------ Stats ------------------------------------
+Activated forward-chain 17 time(s)
+Attempted to add 2 reduncent fact(s)
+Performed 193 unification(s)
+Registered 4 predicate symbol(s)
+Registered 6 constant symbol(s)
+------------------------------------- Raw -------------------------------------
+False
+Sibling(Eric, Rachel)
+Distinct(Rachel, Eric)
+Sibling(Rachel, Eric)
+Sibling(Lisa, Jay)
+Cousin(Eric, Frances)
+Cousin(Rachel, Frances)
+Distinct(Jay, Lisa)
+Sibling(Jay, Lisa)
+Cousin(Frances, Eric)
+Cousin(Frances, Rachel)

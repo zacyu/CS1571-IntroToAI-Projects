@@ -1,0 +1,37 @@
+------------------------------------ Given ------------------------------------
+Rule American(var0) ^ Weapon(var1) ^ Nation(var2) ^ Hostile(var2) ^ Sells(var0, var2, var1) -> Criminal(var0)
+Rule Owns(Nono, var0) ^ Missile(var0) -> Sells(West, Nono, var0)
+Rule Missile(var0) -> Weapon(var0)
+Rule Enemy(var0, America) -> Hostile(var0)
+Fact American(West)
+Fact Nation(Nono)
+Fact Enemy(Nono, America)
+Fact Owns(Nono, M1)
+Fact Missile(M1)
+Fact Nation(America)
+------------------------------------ Promt ------------------------------------
+Show that Criminal(West)
+------------------------------------ Proof ------------------------------------
+From given, American(West)
+From given, Missile(M1)
+By rule Missile(var0) -> Weapon(var0) we have Weapon(M1)
+From given, Nation(Nono)
+From given, Enemy(Nono, America)
+By rule Enemy(var0, America) -> Hostile(var0) we have Hostile(Nono)
+From given, Owns(Nono, M1)
+From given, Missile(M1)
+By rule Owns(Nono, var0) ^ Missile(var0) -> Sells(West, Nono, var0) we have Sells(West, Nono, M1)
+By rule American(var0) ^ Weapon(var1) ^ Nation(var2) ^ Hostile(var2) ^ Sells(var0, var2, var1) -> Criminal(var0) we have Criminal(West)
+Q.E.D.
+------------------------------------ Stats ------------------------------------
+Activated forward-chain 10 time(s)
+Attempted to add 17 reduncent fact(s)
+Performed 48 unification(s)
+Registered 9 predicate symbol(s)
+Registered 4 constant symbol(s)
+------------------------------------- Raw -------------------------------------
+True
+Hostile(Nono)
+Sells(West, Nono, M1)
+Weapon(M1)
+Criminal(West)

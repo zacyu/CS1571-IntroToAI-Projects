@@ -1,0 +1,160 @@
+Configuration File: test_aggregation3.config
+Problem Name: aggregation
+Algorithm: bfs
+N_00
+N_01
+N_05
+N_06
+N_02
+N_07
+N_03
+N_04
+Time: 25229
+Space: Frontier 17715, Visited 7513
+Cost: 25
+--------------------------------------------------------------------------------
+Configuration File: test_aggregation3.config
+Problem Name: aggregation
+Algorithm: iddfs
+N_00
+N_01
+N_05
+N_06
+N_02
+N_07
+N_03
+N_04
+Time: 35685
+Space: Not available for tree search
+Cost: 25
+--------------------------------------------------------------------------------
+Configuration File: test_aggregation3.config
+Problem Name: aggregation
+Algorithm: unicost
+N_04
+N_03
+N_07
+N_01
+N_05
+N_01
+N_02
+N_06
+N_00
+Time: 30996
+Space: Frontier 21416, Visited 9580
+Cost: 22
+--------------------------------------------------------------------------------
+Configuration File: test_aggregation3.config
+Problem Name: aggregation
+Algorithm: greedy
+N_03
+N_07
+N_01
+N_05
+N_06
+N_01
+N_02
+N_07
+N_06
+N_00
+N_06
+N_07
+N_03
+N_04
+Time: 207
+Space: Frontier 130, Visited 77
+Cost: 54
+--------------------------------------------------------------------------------
+Configuration File: test_aggregation3.config
+Problem Name: aggregation
+Algorithm: Astar
+N_04
+N_03
+N_07
+N_01
+N_05
+N_01
+N_00
+N_06
+N_02
+Time: 5716
+Space: Frontier 3918, Visited 1798
+Cost: 22
+--------------------------------------------------------------------------------
+Configuration File: test_pancakes3.config
+Problem Name: pancakes
+Algorithm: iddfs
+flip top 2
+flip top 4
+flip top 3
+flip top 6
+flip top 5
+flip top 3
+flip top 4
+flip top 2
+flip top 6
+Time: 1815758
+Space: Not available for tree search
+Cost: 9
+--------------------------------------------------------------------------------
+Configuration File: test_pancakes3.config
+Problem Name: pancakes
+Algorithm: greedy
+flip top 1
+flip top 2
+flip top 5
+flip top 6
+flip top 2
+flip top 5
+flip top 6
+flip top 5
+flip top 1
+flip top 4
+flip top 3
+flip top 6
+flip top 3
+flip top 6
+Time: 120
+Space: Frontier 97, Visited 23
+Cost: 14
+--------------------------------------------------------------------------------
+Configuration File: test_pancakes3.config
+Problem Name: pancakes
+Algorithm: Astar
+flip top 2
+flip top 4
+flip top 3
+flip top 6
+flip top 5
+flip top 3
+flip top 4
+flip top 2
+flip top 6
+Time: 6563
+Space: Frontier 5252, Visited 1311
+Cost: 9
+--------------------------------------------------------------------------------
+Configuration File: test_pancakes3.config
+Problem Name: pancakes
+Algorithm: bfs
+Timed out after 1800.230925 sec
+Time: 78238
+Space: Frontier 62588, Visited 15646
+Cost: 0
+--------------------------------------------------------------------------------
+Configuration File: test_pancakes3.config
+Problem Name: pancakes
+Algorithm: unicost
+Timed out after 1800.058225 sec
+Time: 122093
+Space: Frontier 97672, Visited 24417
+Cost: 0
+--------------------------------------------------------------------------------
+Configuration File: test_pancakes3.config
+Problem Name: pancakes
+Algorithm: unicost
+Timed out after 1800.09171 sec
+Time: 121828
+Space: Frontier 97460, Visited 24364
+Cost: 0
+--------------------------------------------------------------------------------

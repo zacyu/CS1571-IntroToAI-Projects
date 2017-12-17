@@ -1,0 +1,183 @@
+\documentclass[letterpaper]{article}
+\usepackage[letterpaper]{geometry}
+\usepackage{amsmath,amsfonts,amsthm,amssymb}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{extramarks}
+\usepackage{chngpage}
+\usepackage{hyperref}
+\usepackage[table]{xcolor}
+\usepackage{graphicx,float}
+\usepackage{multicol,marvosym,dsfont}
+\usepackage{tikz}
+\usepackage{natbib}
+\usepackage{algorithm2e, listings}
+\newcommand{\Class}{CS 1571}
+\newcommand{\ClassInstructor}{Prof. Diane Litman}
+\newcommand{\ClassGrader}{Ahmed Magooda}
+
+% Homework Specific Information. Change it to your own
+\newcommand{\Title}{Homework 4}
+\newcommand{\DueDate}{Dec. 6, 2017}
+\newcommand{\StudentName}{Zac Yu}
+\newcommand{\StudentLDAP}{zhy46@}
+
+% In case you need to adjust margins:
+\topmargin=-0.45in      %
+\evensidemargin=0in     %
+\oddsidemargin=0in      %
+\textwidth=6.5in        %
+\textheight=9.0in       %
+\headsep=0.25in         %
+
+% Setup the header and footer
+\pagestyle{fancy}                                                       %
+\lhead{\StudentName}                                                    %
+\chead{\Title}                                                          %
+\rhead{\firstxmark}                                                     %
+\lfoot{\lastxmark}                                                      %
+\cfoot{}                                                                %
+\rfoot{Page\ \thepage\ of\ \protect\pageref{LastPage}}                  %
+\renewcommand\headrulewidth{0.4pt}                                      %
+\renewcommand\footrulewidth{0.4pt}                                      %
+\renewcommand\implies\Rightarrow
+\fancypagestyle{fpfancy} {
+	\renewcommand{\headrulewidth}{0pt}
+	%
+	\fancyhf{}
+	%
+	\fancyfoot[L]{\lastxmark}
+	%
+	\fancyfoot[R]{Page\ \thepage\ of\ \protect\pageref{LastPage}}
+	%
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Some tools
+\newcommand{\enterProblemHeader}[1]{\nobreak\extramarks{#1}{#1 continued on next page\ldots}\nobreak%
+                                    \nobreak\extramarks{#1 (continued)}{#1 continued on next page\ldots}\nobreak}%
+\newcommand{\exitProblemHeader}[1]{\nobreak\extramarks{#1 (continued)}{#1 continued on next page\ldots}\nobreak%
+                                   \nobreak\extramarks{#1}{}\nobreak}%
+
+\newcommand{\homeworkProblemName}{}%
+\newcounter{homeworkProblemCounter}%
+\newenvironment{homeworkProblem}[1][Problem \arabic{homeworkProblemCounter}]%
+  {\stepcounter{homeworkProblemCounter}%
+   \renewcommand{\homeworkProblemName}{#1}%
+   \section*{\homeworkProblemName}%
+   \enterProblemHeader{\homeworkProblemName}}%
+  {\exitProblemHeader{\homeworkProblemName}}%
+
+\newcommand{\homeworkSectionName}{}%
+\newlength{\homeworkSectionLabelLength}{}%
+\newenvironment{homeworkSection}[1]%
+  {% We put this space here to make sure we're not connected to the above.
+
+   \renewcommand{\homeworkSectionName}{#1}%
+   \settowidth{\homeworkSectionLabelLength}{\homeworkSectionName}%
+   \addtolength{\homeworkSectionLabelLength}{0.25in}%
+   \changetext{}{-\homeworkSectionLabelLength}{}{}{}%
+   \subsection*{\homeworkSectionName}%
+   \enterProblemHeader{\homeworkProblemName\ [\homeworkSectionName]}}%
+  {\enterProblemHeader{\homeworkProblemName}%
+
+   % We put the blank space above in order to make sure this margin
+   % change doesn't happen too soon.
+   \changetext{}{+\homeworkSectionLabelLength}{}{}{}}%
+
+\newcommand{\Answer}{\ \\\textit{\textbf{Answer:}} }
+\newcommand{\Proof}{\ \\\textit{\textbf{Proof:}} }
+\newcommand{\Acknowledgements}[1]{\ \\{\bf Acknowledgements:} #1}
+\newcommand{\Hint}[1]{\ \\{\bf Hint:} #1}
+\newcommand{\Infer}{\Longrightarrow}
+\newcommand{\ud}{\mathrm{d}}
+\newcommand{\Reduce}{\Longleftarrow}
+\newcommand{\Endproof}{\hfill $\Box$\vspace{.05in}\\}
+\newcommand{\T}{\mathrm{T}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\Real}{\mathbb{R}}
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{\node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
+\renewcommand\part[1]{\textbf{(#1)}\vspace{.05in}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand\hlight[1]{\tikz[overlay, remember picture,baseline=-\the\dimexpr\fontdimen22\textfont2\relax]\node[rectangle,rounded corners,draw,thick,text opacity=1] {$#1$};}
+\renewcommand{\arraystretch}{1.25}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Make title
+\title{\textmd{\bf \Class: \Title}\\{\large Instructed by \textit{\ClassInstructor}}\\{\vspace{-0.1in}\small Grader: \textit{\ClassGrader}}\\\normalsize\vspace{0.1in}\small{Due\ on\ \DueDate}}
+%\date{} % --- if you de-comment \date{}, the date will not appear below the title
+\author{\textbf{\StudentName}\ \ (LDAP: \StudentLDAP)}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document} % document starts here
+\maketitle \thispagestyle{fpfancy}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Begin edit from here
+
+\section{Report for Naive Bayes: Spam Detection}
+\subsection{Abstract}
+We implemented a Naive Bayes classifier for detecting e-mail spam, and tested the classifier on a publicly available spam dataset using 5-fold cross-validation.
+\subsubsection{Output}
+This report is based on the \href{run:output.md}{output file}, best viewed in a Markdown renderer or as a \href{run:output.html}{rendered Markdown in HTML}.
+\subsection{Training Approach}
+\subsubsection{Dataset}
+We used the SPAM E-mail Database from the University of California, Irvine's public Machine Learning databases\footnote{https://archive.ics.uci.edu/ml/machine-learning-databases/spambase/spambase.DOCUMENTATION} that consists of 4601 samples of 58 preprocessed attributes (57 features and 1 classification).
+\subsubsection{Data Spiting}
+We split the dataset to 5 groups for a 5-fold cross-validation - for iteration $k,$ group $k$ is used as the test set while the rest four are used for training. The five groups are divided based the samples' original position (row number modulo 5) in the dataset so that group 1 consists of samples with row number congruent to 0, group 2 consists of samples with row number congruent to 1, etc.
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+\textbf{Iteration} & \textbf{Pos in Train} & \textbf{Neg in Train} & \textbf{Pos in Dev} & \textbf{Neg in Dev} \\ \hline
+1                  & 1450                  & 2230                  & 363                 & 558                 \\ \hline
+2                  & 1450                  & 2231                  & 363                 & 557                 \\ \hline
+3                  & 1450                  & 2231                  & 363                 & 557                 \\ \hline
+4                  & 1451                  & 2230                  & 362                 & 558                 \\ \hline
+5                  & 1451                  & 2230                  & 362                 & 558                 \\ \hline
+\end{tabular}
+\end{center}
+\subsubsection{Computing Feature Probabilities}
+For each iteration, we computed for four probabilities for each feature $F_i$, namely $P(F_i\leq\mathit{mu}_i\mid\mathit{spam}), P(F_i>\mathit{mu}_i\mid\mathit{spam}), P(F_i\leq\mathit{mu}_i\mid\neg\mathit{spam}),$ and $P(F_i>\mathit{mu}_i\mid\neg\mathit{spam}),$ where $\mathit{mu}_i$ is the overall mean value for the feature. The probabilities for the first feature for all five iterations are shown in the attached table below. Note that instead of using a traditional smoothing algorithm, we naively replaced zero probabilities with $0.0014.$
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+\textbf{Iteration} & \textbf{$P(F_1\leq\mathit{mu}_1\mid\mathit{spam})$} & \textbf{$P(F_1>\mathit{mu}_1\mid\mathit{spam})$} & \textbf{$P(F_1\leq\mathit{mu}_1\mid\neg\mathit{spam})$} & \textbf{$P(F_1>\mathit{mu}_1\mid\neg\mathit{spam})$} \\ \hline
+1                  & 0.708966                                            & 0.291034                                         & 0.883408                                                & 0.116592                                             \\ \hline
+2                  & 0.704828                                            & 0.295172                                         & 0.886150                                                & 0.113850                                             \\ \hline
+3                  & 0.702759                                            & 0.297241                                         & 0.893770                                                & 0.106230                                             \\ \hline
+4                  & 0.717436                                            & 0.282564                                         & 0.886099                                                & 0.113901                                             \\ \hline
+5                  & 0.715369                                            & 0.284631                                         & 0.889238                                                & 0.110762                                             \\ \hline
+\end{tabular}
+\end{center}
+\subsection{Validation}
+\subsubsection{Computing Predictions}
+For each sample in the test set, we predicts its probability of being a spam email message with a Naive Bayes classifier we built with from the training set, of the feature probabilities for that particular iteration. If the resulting probability is greater than $0.5,$ it will be classified as a spam message.
+\subsubsection{Error Rates}
+The predictions are checked against the classification in ground truth. We observed that our classifier exhibit the following error rates.
+\begin{center}
+\begin{tabular}{|c|c|c|c|}
+\hline
+\textbf{Fold} & \textbf{False Pos} & \textbf{False Neg} & \textbf{Overall} \\ \hline
+1             & 0.055556           & 0.187328           & 0.107492         \\ \hline
+2             & 0.052065           & 0.195592           & 0.108696         \\ \hline
+3             & 0.053860           & 0.140496           & 0.088043         \\ \hline
+4             & 0.057348           & 0.132597           & 0.086957         \\ \hline
+5             & 0.057348           & 0.162983           & 0.098913         \\ \hline
+Avg           & 0.055235           & 0.163799           & 0.098020         \\ \hline
+\end{tabular}
+\end{center}
+\subsection{Analysis}
+\subsubsection{Training v.s. Error Rates}
+The samples in the data set were spit to almost even groups so the affect of the ratio of negative/positive samples on the training set to the error rates across iterations is unclear. Specifically, iteration 2 and 3 have the same number of positive and negative samples in the training set, yet the false negative rate on the test set is still varies relatively largely. However, within iterations, since the ratio of negative samples is large than that of positive samples, the false positive rates are generally smaller than the false negative rates. 
+\subsubsection{Method v.s. Error Rates}
+As expected, the overall error rates are significantly lower that what they would be by blindly choosing the majority class. For instance, for iteration 1 with group 1 being the test set, the majority group is negative. If all samples are classified are negative, we will have an overall error rate of $0.394137>0.107492.$ More extremely, the false negative rate will be $1\gg 0.187329$ yet the false positive rate will be $0\ll 0.0555556.$ The false positive rate, however, is misleading considering that the recall/sensativity is also $0.$
+% End edit to here
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\label{LastPage}
+\end{document} % document ends here
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+

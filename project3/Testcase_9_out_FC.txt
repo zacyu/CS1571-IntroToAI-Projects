@@ -1,0 +1,27 @@
+------------------------------------ Given ------------------------------------
+Rule Pompeian(var0) -> Roman(var0)
+Rule Man(var0) -> People(var0)
+Rule People(var0) ^ Assassinate(var0, var1) ^ Ruler(var1) -> Traitor(var0)
+Rule Roman(var0) ^ Assassinate(var0, var1) ^ Traitor(var0) -> Hate(var0, var1)
+Fact Man(Marcus)
+Fact Pompeian(Marcus)
+Fact Ruler(Caesar)
+Fact Man(Caesar)
+Fact Assassinate(Marcus, Caesar)
+------------------------------------ Promt ------------------------------------
+Show that Traitor(Caesar)
+------------------------------------ Proof ------------------------------------
+Failed
+------------------------------------ Stats ------------------------------------
+Activated forward-chain 10 time(s)
+Attempted to add 24 reduncent fact(s)
+Performed 61 unification(s)
+Registered 8 predicate symbol(s)
+Registered 2 constant symbol(s)
+------------------------------------- Raw -------------------------------------
+False
+People(Marcus)
+Roman(Marcus)
+People(Caesar)
+Traitor(Marcus)
+Hate(Marcus, Caesar)

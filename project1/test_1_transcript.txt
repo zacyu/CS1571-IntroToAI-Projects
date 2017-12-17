@@ -1,0 +1,7 @@
+Configuration File: test_pancakes1.config
+Problem Name: pancakes
+Algorithm: Astar
+Timed out after 1800.359055 sec
+Time: 110283
+Space: Frontier 99247, Visited 11027
+--------------------------------------------------------------------------------

@@ -1,0 +1,247 @@
+\documentclass[letterpaper]{article}
+\usepackage[letterpaper]{geometry}
+\usepackage{amsmath,amsfonts,amsthm,amssymb}
+\usepackage{fancyhdr}
+\usepackage{extramarks}
+\usepackage{chngpage}
+\usepackage{color}
+\usepackage[table]{xcolor}
+\usepackage{graphicx,float}
+\usepackage{multicol,marvosym,dsfont}
+\usepackage{tikz}
+\usepackage{natbib}
+\newcommand{\Class}{CS 1571}
+\newcommand{\ClassInstructor}{Prof. Diane Litman}
+\newcommand{\ClassGrader}{Ahmed Magooda}
+
+% Homework Specific Information. Change it to your own
+\newcommand{\Title}{Project 1}
+\newcommand{\DueDate}{Oct. 2, 2017}
+\newcommand{\StudentName}{Zac Yu}
+\newcommand{\StudentLDAP}{zhy46@}
+
+% In case you need to adjust margins:
+\topmargin=-0.45in      %
+\evensidemargin=0in     %
+\oddsidemargin=0in      %
+\textwidth=6.5in        %
+\textheight=9.0in       %
+\headsep=0.25in         %
+
+% Setup the header and footer
+\pagestyle{fancy}                                                       %
+\lhead{\StudentName}                                                    %
+\chead{\Title}                                                          %
+\rhead{\firstxmark}                                                     %
+\lfoot{\lastxmark}                                                      %
+\cfoot{}                                                                %
+\rfoot{Page\ \thepage\ of\ \protect\pageref{LastPage}}                  %
+\renewcommand\headrulewidth{0.4pt}                                      %
+\renewcommand\footrulewidth{0.4pt}                                      %
+\fancypagestyle{fpfancy} {
+	\renewcommand{\headrulewidth}{0pt}
+	%
+	\fancyhf{}
+	%
+	\fancyfoot[L]{\lastxmark}
+	%
+	\fancyfoot[R]{Page\ \thepage\ of\ \protect\pageref{LastPage}}
+	%
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Some tools
+\newcommand{\enterProblemHeader}[1]{\nobreak\extramarks{#1}{#1 continued on next page\ldots}\nobreak%
+                                    \nobreak\extramarks{#1 (continued)}{#1 continued on next page\ldots}\nobreak}%
+\newcommand{\exitProblemHeader}[1]{\nobreak\extramarks{#1 (continued)}{#1 continued on next page\ldots}\nobreak%
+                                   \nobreak\extramarks{#1}{}\nobreak}%
+
+\newcommand{\homeworkProblemName}{}%
+\newcounter{homeworkProblemCounter}%
+\newenvironment{homeworkProblem}[1][Problem \arabic{homeworkProblemCounter}]%
+  {\stepcounter{homeworkProblemCounter}%
+   \renewcommand{\homeworkProblemName}{#1}%
+   \section*{\homeworkProblemName}%
+   \enterProblemHeader{\homeworkProblemName}}%
+  {\exitProblemHeader{\homeworkProblemName}}%
+
+\newcommand{\homeworkSectionName}{}%
+\newlength{\homeworkSectionLabelLength}{}%
+\newenvironment{homeworkSection}[1]%
+  {% We put this space here to make sure we're not connected to the above.
+
+   \renewcommand{\homeworkSectionName}{#1}%
+   \settowidth{\homeworkSectionLabelLength}{\homeworkSectionName}%
+   \addtolength{\homeworkSectionLabelLength}{0.25in}%
+   \changetext{}{-\homeworkSectionLabelLength}{}{}{}%
+   \subsection*{\homeworkSectionName}%
+   \enterProblemHeader{\homeworkProblemName\ [\homeworkSectionName]}}%
+  {\enterProblemHeader{\homeworkProblemName}%
+
+   % We put the blank space above in order to make sure this margin
+   % change doesn't happen too soon.
+   \changetext{}{+\homeworkSectionLabelLength}{}{}{}}%
+
+\newcommand{\Answer}{\ \\\textit{\textbf{Answer:}} }
+\newcommand{\Proof}{\ \\\textit{\textbf{Proof:}} }
+\newcommand{\Acknowledgements}[1]{\ \\{\bf Acknowledgements:} #1}
+\newcommand{\Hint}[1]{\ \\{\bf Hint:} #1}
+\newcommand{\Infer}{\Longrightarrow}
+\newcommand{\ud}{\mathrm{d}}
+\newcommand{\Reduce}{\Longleftarrow}
+\newcommand{\Endproof}{\hfill $\Box$\vspace{.05in}\\}
+\newcommand{\T}{\mathrm{T}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\Real}{\mathbb{R}}
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{\node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
+\renewcommand\part[1]{\textbf{(#1)}\vspace{.05in}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand\hlight[1]{\tikz[overlay, remember picture,baseline=-\the\dimexpr\fontdimen22\textfont2\relax]\node[rectangle,rounded corners,draw,thick,text opacity=1] {$#1$};}
+\renewcommand{\arraystretch}{1.25}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Make title
+\title{\textmd{\bf \Class: \Title}\\{\large Instructed by \textit{\ClassInstructor}}\\{\vspace{-0.1in}\small Grader: \textit{\ClassGrader}}\\\normalsize\vspace{0.1in}\small{Due\ on\ \DueDate}}
+\date{October 2, 2017} % --- if you de-comment \date{}, the date will not appear below the title
+\author{\textbf{\StudentName}\ \ (LDAP: \StudentLDAP)}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document} % document starts here
+\maketitle \thispagestyle{fpfancy}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Begin edit from here
+
+\begin{homeworkProblem}
+\section{Wireless Sensor Monitoring Problem (\texttt{monitor})}
+\subsection{Problem Formulation}
+Intuitively, we will start with a empty state where no targets are monitored by sensors. For each step, we can assign a sensor to a target. Since the order doesn't matter, we can start from sensor 1 to sensor $n$, as long as we allow a sensor to not monitor any target or to monitor an monitored target if and only if there are more unassigned sensors than unmonitored targets.\\
+A tricky part to begin with was to express the problem of maximizing the profit (duration when all targets are monitored) in terms of a problem of minimizing the cost. I ended up setting the cost to be the negative profit, and thus when the cost (i.e. negative profit) is minimized, the profit is maximized. Naturally, the step cost is chosen to be the negative duration some sensor-target pair can last.\\
+Another issue I encountered when formulating this problem early on was that the path cost from one state to the next is not measured by the previous path cost + the step cost, but rather the maximum (or minimum of the absolute values) between the path cost and the step cost. I eventually made the path cost calculation a problem dependent function to allow such customization.
+\subsection{Heuristic Function}
+I chose the heuristic function to be the minimized potential cost when all unmonitored targets are monitored. Specifically, for each unmonitored target, we find the longest time it can last when monitored any of the unassigned sensors. Notice that we allowed various targets being monitored by the same sensor when calculating this maximized monitoring duration, since we don't want to overestimate the cost. Finally, we compare this maximized duration to the current path cost, if return the positive difference if the current step cost (current negative profit) is smaller than the negative maximized duration, which is the minimized potential cost, and therefore the heuristic function is admissible. The evaluation function for $A^*$ is also consistent since the profit is non-increasing (and hence the cost is nondecreasing).
+\subsection{Performance}
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+\texttt{test\_monitor1.config} & Breadth First & Iterative Deepening & Uniform Cost & Greedy & $A^*$ \\ \hline
+Time & 11 & 19 & 7 & 12 & 7 \\ \hline
+Frontier & 6 & N/A & 4 & 5 & 4 \\ \hline
+Visited & 5 & N/A & 3 & 7 & 3 \\ \hline
+Cost & 88.0 & 88.0 & 88.0 & 35.36 & 88.0 \\ \hline
+\end{tabular}
+\end{center}
+For the first input file, since the size is small, all searching algorithms finished fairly quickly and all except for the greedy algorithm yielded the optimal solution. We notice that the uniform-cost search and $A^*$ took the same amount of time to complete.
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+\texttt{test\_monitor2.config} & Breadth First & Iterative Deepening & Uniform Cost & Greedy & $A^*$ \\ \hline
+Time & 8236 & 10715 & 1589 & 94 & 219 \\ \hline
+Frontier & 6 & N/A & 1138 & 65 & 162 \\ \hline
+Visited & 5 & N/A & 451 & 29 & 57 \\ \hline
+Cost & 11.42 & 11.42 & 13.65 & 10.11 & 13.65 \\ \hline
+\end{tabular}
+\end{center}
+For the second input file, which is moderately larger in size, the breadth-first search and iterative-deepening search took considerable amount of time. The greedy algorithm finished very quickly but yielded a suboptimal result. However, the heuristic function is proven to be effective when comparing the time and space cost between those of the uniform-cost search and of the $A^*$ search. While both were successful at finding the optimal solution, the $A^*$ search, thanks to the heuristic function, only takes about $\frac{1}{8}$ of the space and time. We also observed that the space and time complexities generally matches our expectation based on our class discussions.	
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+\section{Data Aggregation Problem (\texttt{aggregation})}
+\subsection{Problem Formulation}
+This formulation of the data aggregation problem is more straightforward. We start with an initial state of empty path, and then pick any of the node to go next with a delay of 0. What's next is just standard graph search of traveling among nodes.\\
+Unlike the traveling salesman problem, the graph is not guaranteed to be complete and we might need to visit a node multiple times before we finish visiting all nodes. During my initial experiments, I actually discovered that for input file \texttt{test\_aggregation2.config}, when having the rule that no node shall be visited for more than one time, it is impossible to visit all nodes.\\
+Another thing worth mentioning is that we are provided with coordinates of the location of each node as part of the input. This geometric distance between nodes, however, does not serve as a candidate reflection of the delay to go from one to the other. Nor is this distance used in any way to calculate the cost. After some experiments, I decided to disregard this piece of data.
+\subsection{Heuristic Function}
+I used the weight of the minimum spanning tree of all unvisited nodes (calculated with Kruskal's algorithm in $O(E\log(E+V))$ time) as the heuristic function to ensure that it is consistant in the sense that the evaluation function of path cost + heuristic (i.e. that for $A^*$) along any path are nondecreasing and that it does not overestimate the cost. Therefore, the heuristic function is admissible and consistent and should always lead to the most optimal solution with $A^*$.
+\subsection{Performance}
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+\texttt{test\_aggregation1.config} & Breadth First & Iterative Deepening & Uniform Cost & Greedy & $A^*$ \\ \hline
+Time & 12 & 20 & 20 & 12 & 13 \\ \hline
+Frontier & 6 & N/A & 10 & 6 & 7 \\ \hline
+Visited & 5 & N/A & 10 & 6 & 6 \\ \hline
+Cost & 15 & 15 & 9 & 25 & 9 \\ \hline
+\end{tabular}
+\end{center}
+The size of the first input file for the aggregation problem is even smaller. All searching algorithms finished fairly quickly and both uniform-cost search and $A^*$ search yielded the optimal solution as expected.
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+\texttt{test\_aggregation2.config} & Breadth First & Iterative Deepening & Uniform Cost & Greedy & $A^*$ \\ \hline
+Time & 70593+ & 149231182+ & 103619+ & 518 & 102272+ \\ \hline
+Frontier & 59238+ & N/A & 85916+ & 411 & 82987+ \\ \hline
+Visited & 11351+ & N/A & 17699+ & 107 & 19282+ \\ \hline
+Cost & timed out & timed out & timed out & 148 & timed out \\ \hline
+\end{tabular}
+\end{center}
+The search space for the second input file, with a total of 45 nodes, is gigantic. Out of all search algorithms, only the greedy algorithm was able to finish before the 30-minute deadline, with a likely suboptimal cost of 148. However, we can fairly confident that given longer time, $A^*$ will be able to find the most optimal solution a lot faster than the uniform-cost search, as indicated by the performance data on the first input file. We can potentially derive a better heuristic function for this problem that takes into account that each node can be visited for multiple times since the MST weight heuristic is more suitable for a problem with the visit-each-node-only-once rule. I would prefer using $A^*$ search for this problem.
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+\texttt{test\_aggregation3.config} & Breadth First & Iterative Deepening & Uniform Cost & Greedy & $A^*$ \\ \hline
+Time & 25229 & 35685 & 30996 & 207 & 5716 \\ \hline
+Frontier & 17715 & N/A & 21416 & 130 & 3918 \\ \hline
+Visited & 7513 & N/A & 9580 & 77 & 1798 \\ \hline
+Cost & 25 & 25 & 22 & 54 & 22 \\ \hline
+\end{tabular}
+\end{center}
+The result for the third input file again confirms that the heuristic function is consistent and optimal, yielding the optimal solution with an $A^*$ search.
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+\section{The Burnt Pancake Problem (\texttt{pancakes})}
+\subsection{Problem Formulation}
+This formulation of the burnt pancake problem is straightforward. For each state, we can simply use a tuple to represent the order, similar to the input format. Actions are to flip $1, 2, \ldots, n$ pancakes from the top as long as the resulting tuple has not been seen before. 
+\subsection{Heuristic Function}
+Since we want to turn the into pancake into increasing order as much as possible and that connected pancakes can be easily moved with two flip operations, we can count the breakpoint, defined as an occurrence of two adjacent pancakes in the order tuple not differ by 1. Note that both $-4, -3, -2$ and $2, 3, 4$ are favored instances and both have adjacent element all differ by 1 (ordered, right element $-$ left element). This method is inspired by paper \cite{bouzy2015experimental}. Note that the heuristic function is not guaranteed to be both consistent and admissible since as mentioned above, flipping negative continues adjacent pancakes won't increase breakpoints. The know that $A^*$ will then always lead to the optimal solution.\\
+Note that the actual heuristic function used for this problem is the number of breaking points $-$ path cost, to ensure the optimality of $A^*$.
+\subsection{Performance}
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+\texttt{test\_pancakes1.config} & Breadth First & Iterative Deepening & Uniform Cost & Greedy & $A^*$ \\ \hline
+Time & 61523+ & 231167229+ & 92293+ & 314 & 62576+ \\ \hline
+Frontier & 55363+ & N/A & 83056+ & 283 & 61252+ \\ \hline
+Visited & 6151+ & N/A & 9228+ & 31 & 1276+ \\ \hline
+Cost & timed out & timed out & timed out & 22 & timed out \\ \hline
+\end{tabular}
+\end{center}
+The size of the first input file for the aggregation problem is still relatively small, consists of 11 elements. But we observe that the search space is already to large enough for any uninformed search to complete. I am also disappointed that the $A^*$ algorithm couldn't finish. The result from the greedy algorithm, however, is promising.
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+\texttt{test\_pancakes2.config} & Breadth First & Iterative Deepening & Uniform Cost & Greedy & $A^*$ \\ \hline
+Time & 62576+ & 202338475+ & 101874+ & 3678 & 132499+ \\ \hline
+Frontier & 61242+ & N/A & 99748+ & 3603 & 129748+ \\ \hline
+Visited & 1276+ & N/A & 2078+ & 75 & 2703+ \\ \hline
+Cost & timed out & timed out & timed out & 68 & timed out \\ \hline
+\end{tabular}
+\end{center}
+As expected, the greedy search found a feasible solution really quickly. Unfortunately, the search space of this problem is simply too large for $A^*$ to find the optimal solution within the deadline of 30 minutes. At the same time, we observe that the significant growth of time and space cost when a comparatively small increase of the size of input.
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+\texttt{test\_pancakes3.config} & Breadth First & Iterative Deepening & Uniform Cost & Greedy & $A^*$ \\ \hline
+Time & 78238+ & 1815758 & 121828+ & 120 & 6563 \\ \hline
+Frontier & 62588+ & N/A & 97460+ & 97 & 5252 \\ \hline
+Visited & 15646+ & N/A & 24364+ & 23 & 1311 \\ \hline
+Cost & timed out & 9 & timed out & 14 & 9 \\ \hline
+\end{tabular}
+\end{center}
+I am very happy to see that the $A^*$ search work with a larger size of input. Since the step cost of this problem is 1, the iterative deepening search was also successful at finding the optimal solution. However, we notice that the $A^*$ search found the optimal solution much with much shorter time compared to the iterative deepening search.
+\end{homeworkProblem}
+
+\bibliographystyle{plain}
+\bibliography{ref}
+
+% End edit to here
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\label{LastPage}
+\end{document} % document ends here
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+

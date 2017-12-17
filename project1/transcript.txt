@@ -1,0 +1,554 @@
+Configuration File: test_monitor1.config
+Problem Name: monitor
+Algorithm: bfs
+S_1_T_1
+S_2_T_2
+S_3_T_3
+Time: 11
+Space: Frontier 6, Visited 5
+Cost: 88.0
+--------------------------------------------------------------------------------
+Configuration File: test_monitor1.config
+Problem Name: monitor
+Algorithm: iddfs
+S_1_T_1
+S_2_T_2
+S_3_T_3
+Time: 19
+Space: Not available for tree search
+Cost: 88.0
+--------------------------------------------------------------------------------
+Configuration File: test_monitor1.config
+Problem Name: monitor
+Algorithm: unicost
+S_1_T_1
+S_2_T_2
+S_3_T_3
+Time: 7
+Space: Frontier 4, Visited 3
+Cost: 88.0
+--------------------------------------------------------------------------------
+Configuration File: test_monitor1.config
+Problem Name: monitor
+Algorithm: greedy
+S_1_T_2
+S_2_T_1
+S_3_T_3
+Time: 12
+Space: Frontier 5, Visited 7
+Cost: 35.35533905932737
+--------------------------------------------------------------------------------
+Configuration File: test_monitor1.config
+Problem Name: monitor
+Algorithm: Astar
+S_1_T_1
+S_2_T_2
+S_3_T_3
+Time: 7
+Space: Frontier 4, Visited 3
+Cost: 88.0
+--------------------------------------------------------------------------------
+Configuration File: test_monitor2.config
+Problem Name: monitor
+Algorithm: bfs
+S_1_T_1
+S_2_T_2
+S_3_T_3
+S_4_T_4
+S_5_T_5
+S_6_T_6
+Time: 8236
+Space: Frontier 6217, Visited 2014
+Cost: 11.42143823027206
+--------------------------------------------------------------------------------
+Configuration File: test_monitor2.config
+Problem Name: monitor
+Algorithm: iddfs
+S_1_T_1
+S_2_T_2
+S_3_T_3
+S_4_T_4
+S_5_T_5
+S_6_T_6
+Time: 10715
+Space: Not available for tree search
+Cost: 11.42143823027206
+--------------------------------------------------------------------------------
+Configuration File: test_monitor2.config
+Problem Name: monitor
+Algorithm: unicost
+S_1_T_3
+S_2_T_5
+S_4_T_2
+S_5_T_1
+S_6_T_4
+S_7_T_6
+Time: 1589
+Space: Frontier 1138, Visited 451
+Cost: 13.654800506215233
+--------------------------------------------------------------------------------
+Configuration File: test_monitor2.config
+Problem Name: monitor
+Algorithm: greedy
+S_1_T_3
+S_2_T_1
+S_3_T_2
+S_4_T_3
+S_5_T_6
+S_6_T_5
+S_7_T_4
+Time: 94
+Space: Frontier 65, Visited 29
+Cost: 10.105651043180542
+--------------------------------------------------------------------------------
+Configuration File: test_monitor2.config
+Problem Name: monitor
+Algorithm: Astar
+S_1_T_3
+S_2_T_5
+S_4_T_2
+S_5_T_4
+S_6_T_1
+S_7_T_6
+Time: 219
+Space: Frontier 162, Visited 57
+Cost: 13.654800506215233
+--------------------------------------------------------------------------------
+Configuration File: test_aggregation1.config
+Problem Name: aggregation
+Algorithm: bfs
+N_1
+N_2
+N_3
+Time: 12
+Space: Frontier 6, Visited 5
+Cost: 15
+--------------------------------------------------------------------------------
+Configuration File: test_aggregation1.config
+Problem Name: aggregation
+Algorithm: iddfs
+N_1
+N_2
+N_3
+Time: 20
+Space: Not available for tree search
+Cost: 15
+--------------------------------------------------------------------------------
+Configuration File: test_aggregation1.config
+Problem Name: aggregation
+Algorithm: unicost
+N_1
+N_3
+N_2
+Time: 20
+Space: Frontier 10, Visited 10
+Cost: 9
+--------------------------------------------------------------------------------
+Configuration File: test_aggregation1.config
+Problem Name: aggregation
+Algorithm: greedy
+N_2
+N_1
+N_2
+N_3
+Time: 12
+Space: Frontier 6, Visited 6
+Cost: 25
+--------------------------------------------------------------------------------
+Configuration File: test_aggregation1.config
+Problem Name: aggregation
+Algorithm: Astar
+N_1
+N_3
+N_2
+Time: 13
+Space: Frontier 7, Visited 6
+Cost: 9
+--------------------------------------------------------------------------------
+Configuration File: test_aggregation2.config
+Problem Name: aggregation
+Algorithm: bfs
+Timed out after 1800.296239 sec
+Time: 70593
+Space: Frontier 59238, Visited 11351
+--------------------------------------------------------------------------------
+Configuration File: test_aggregation2.config
+Problem Name: aggregation
+Algorithm: iddfs
+Timed out after 1800.000005 sec
+Time: 149231182
+Space: Not available for tree search
+--------------------------------------------------------------------------------
+Configuration File: test_aggregation2.config
+Problem Name: aggregation
+Algorithm: unicost
+Timed out after 1800.109226 sec
+Time: 103619
+Space: Frontier 85916, Visited 17699
+--------------------------------------------------------------------------------
+Configuration File: test_aggregation2.config
+Problem Name: aggregation
+Algorithm: greedy
+N_00
+N_10
+N_01
+N_02
+N_03
+N_04
+N_13
+N_12
+N_11
+N_20
+N_21
+N_30
+N_40
+N_30
+N_21
+N_22
+N_31
+N_41
+N_40
+N_30
+N_21
+N_31
+N_20
+N_10
+N_11
+N_22
+N_13
+N_14
+N_23
+N_32
+N_42
+N_31
+N_22
+N_11
+N_21
+N_12
+N_13
+N_24
+N_33
+N_43
+N_34
+N_44
+Time: 518
+Space: Frontier 411, Visited 107
+Cost: 148
+--------------------------------------------------------------------------------
+Configuration File: test_aggregation2.config
+Problem Name: aggregation
+Algorithm: Astar
+Timed out after 1800.051471 sec
+Time: 102272
+Space: Frontier 82987, Visited 19282
+--------------------------------------------------------------------------------
+Configuration File: test_aggregation3.config
+Problem Name: aggregation
+Algorithm: bfs
+N_00
+N_01
+N_05
+N_06
+N_02
+N_07
+N_03
+N_04
+Time: 25229
+Space: Frontier 17715, Visited 7513
+Cost: 25
+--------------------------------------------------------------------------------
+Configuration File: test_aggregation3.config
+Problem Name: aggregation
+Algorithm: iddfs
+N_00
+N_01
+N_05
+N_06
+N_02
+N_07
+N_03
+N_04
+Time: 35685
+Space: Not available for tree search
+Cost: 25
+--------------------------------------------------------------------------------
+Configuration File: test_aggregation3.config
+Problem Name: aggregation
+Algorithm: unicost
+N_04
+N_03
+N_07
+N_01
+N_05
+N_01
+N_02
+N_06
+N_00
+Time: 30996
+Space: Frontier 21416, Visited 9580
+Cost: 22
+--------------------------------------------------------------------------------
+Configuration File: test_aggregation3.config
+Problem Name: aggregation
+Algorithm: greedy
+N_03
+N_07
+N_01
+N_05
+N_06
+N_01
+N_02
+N_07
+N_06
+N_00
+N_06
+N_07
+N_03
+N_04
+Time: 207
+Space: Frontier 130, Visited 77
+Cost: 54
+--------------------------------------------------------------------------------
+Configuration File: test_aggregation3.config
+Problem Name: aggregation
+Algorithm: Astar
+N_04
+N_03
+N_07
+N_01
+N_05
+N_01
+N_00
+N_06
+N_02
+Time: 5716
+Space: Frontier 3918, Visited 1798
+Cost: 22
+--------------------------------------------------------------------------------
+Configuration File: test_pancakes1.config
+Problem Name: pancakes
+Algorithm: bfs
+Timed out after 1800.161559 sec
+Time: 61523
+Space: Frontier 55363, Visited 6151
+--------------------------------------------------------------------------------
+Configuration File: test_pancakes1.config
+Problem Name: pancakes
+Algorithm: iddfs
+Timed out after 1800.000002 sec
+Time: 231167229
+Space: Not available for tree search
+--------------------------------------------------------------------------------
+Configuration File: test_pancakes1.config
+Problem Name: pancakes
+Algorithm: unicost
+Timed out after 1800.08651 sec
+Time: 92293
+Space: Frontier 83056, Visited 9228
+--------------------------------------------------------------------------------
+Configuration File: test_pancakes1.config
+Problem Name: pancakes
+Algorithm: greedy
+flip top 3
+flip top 10
+flip top 1
+flip top 5
+flip top 1
+flip top 9
+flip top 1
+flip top 6
+flip top 3
+flip top 6
+flip top 4
+flip top 8
+flip top 1
+flip top 6
+flip top 1
+flip top 11
+flip top 10
+flip top 4
+flip top 3
+flip top 4
+flip top 1
+flip top 11
+Time: 314
+Space: Frontier 283, Visited 31
+Cost: 22
+--------------------------------------------------------------------------------
+Configuration File: test_pancakes1.config
+Problem Name: pancakes
+Algorithm: Astar
+Timed out after 1800.359055 sec
+Time: 110283
+Space: Frontier 99247, Visited 11027
+--------------------------------------------------------------------------------
+Configuration File: test_pancakes2.config
+Problem Name: pancakes
+Algorithm: bfs
+Timed out after 1801.29356 sec
+Time: 62576
+Space: Frontier 61252, Visited 1276
+--------------------------------------------------------------------------------
+Configuration File: test_pancakes2.config
+Problem Name: pancakes
+Algorithm: iddfs
+Timed out after 1800.000041 sec
+Time: 202338475
+Space: Not available for tree search
+--------------------------------------------------------------------------------
+Configuration File: test_pancakes2.config
+Problem Name: pancakes
+Algorithm: unicost
+Timed out after 1800.247996 sec
+Time: 101874
+Space: Frontier 99748, Visited 2078
+--------------------------------------------------------------------------------
+Configuration File: test_pancakes2.config
+Problem Name: pancakes
+Algorithm: greedy
+flip top 1
+flip top 3
+flip top 5
+flip top 4
+flip top 3
+flip top 2
+flip top 6
+flip top 8
+flip top 10
+flip top 9
+flip top 8
+flip top 7
+flip top 11
+flip top 13
+flip top 1
+flip top 15
+flip top 14
+flip top 13
+flip top 12
+flip top 16
+flip top 18
+flip top 20
+flip top 19
+flip top 1
+flip top 18
+flip top 17
+flip top 21
+flip top 23
+flip top 25
+flip top 24
+flip top 23
+flip top 22
+flip top 27
+flip top 29
+flip top 1
+flip top 28
+flip top 27
+flip top 1
+flip top 30
+flip top 29
+flip top 31
+flip top 33
+flip top 35
+flip top 34
+flip top 33
+flip top 32
+flip top 36
+flip top 38
+flip top 40
+flip top 39
+flip top 38
+flip top 37
+flip top 43
+flip top 44
+flip top 1
+flip top 42
+flip top 41
+flip top 45
+flip top 2
+flip top 45
+flip top 46
+flip top 48
+flip top 49
+flip top 47
+flip top 48
+flip top 49
+flip top 50
+flip top 49
+Time: 3678
+Space: Frontier 3603, Visited 75
+Cost: 68
+--------------------------------------------------------------------------------
+Configuration File: test_pancakes2.config
+Problem Name: pancakes
+Algorithm: Astar
+Timed out after 1800.637092 sec
+Time: 132499
+Space: Frontier 129748, Visited 2703
+--------------------------------------------------------------------------------
+Configuration File: test_pancakes3.config
+Problem Name: pancakes
+Algorithm: bfs
+Timed out after 1800.230925 sec
+Time: 78238
+Space: Frontier 62588, Visited 15646
+--------------------------------------------------------------------------------
+Configuration File: test_pancakes3.config
+Problem Name: pancakes
+Algorithm: iddfs
+flip top 2
+flip top 4
+flip top 3
+flip top 6
+flip top 5
+flip top 3
+flip top 4
+flip top 2
+flip top 6
+Time: 1815758
+Space: Not available for tree search
+Cost: 9
+--------------------------------------------------------------------------------
+Configuration File: test_pancakes3.config
+Problem Name: pancakes
+Algorithm: unicost
+Timed out after 1800.09171 sec
+Time: 121828
+Space: Frontier 97460, Visited 24364
+--------------------------------------------------------------------------------
+Configuration File: test_pancakes3.config
+Problem Name: pancakes
+Algorithm: greedy
+flip top 1
+flip top 2
+flip top 5
+flip top 6
+flip top 2
+flip top 5
+flip top 6
+flip top 5
+flip top 1
+flip top 4
+flip top 3
+flip top 6
+flip top 3
+flip top 6
+Time: 120
+Space: Frontier 97, Visited 23
+Cost: 14
+--------------------------------------------------------------------------------
+Configuration File: test_pancakes3.config
+Problem Name: pancakes
+Algorithm: Astar
+flip top 2
+flip top 4
+flip top 3
+flip top 6
+flip top 5
+flip top 3
+flip top 4
+flip top 2
+flip top 6
+Time: 6563
+Space: Frontier 5252, Visited 1311
+Cost: 9
+--------------------------------------------------------------------------------

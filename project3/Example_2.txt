@@ -1,0 +1,5 @@
+Instrument(y) ^ Musician(x) -> Plays(x,y)
+Instrument(y) ^ Plays(x,y) -> NotToneDeaf(x)
+Musician(Grace)
+Instrument(I1)
+PROVE NotToneDeaf(Grace)

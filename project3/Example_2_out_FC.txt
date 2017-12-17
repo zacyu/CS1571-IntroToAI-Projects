@@ -1,0 +1,24 @@
+------------------------------------ Given ------------------------------------
+Rule Instrument(var0) ^ Musician(var1) -> Plays(var1, var0)
+Rule Instrument(var0) ^ Plays(var1, var0) -> NotToneDeaf(var1)
+Fact Musician(Grace)
+Fact Instrument(I1)
+------------------------------------ Promt ------------------------------------
+Show that NotToneDeaf(Grace)
+------------------------------------ Proof ------------------------------------
+From given, Instrument(I1)
+From given, Instrument(I1)
+From given, Musician(Grace)
+By rule Instrument(var0) ^ Musician(var1) -> Plays(var1, var0) we have Plays(Grace, I1)
+By rule Instrument(var0) ^ Plays(var1, var0) -> NotToneDeaf(var1) we have NotToneDeaf(Grace)
+Q.E.D.
+------------------------------------ Stats ------------------------------------
+Activated forward-chain 4 time(s)
+Attempted to add 4 reduncent fact(s)
+Performed 12 unification(s)
+Registered 4 predicate symbol(s)
+Registered 2 constant symbol(s)
+------------------------------------- Raw -------------------------------------
+True
+Plays(Grace, I1)
+NotToneDeaf(Grace)

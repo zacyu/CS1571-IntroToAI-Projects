@@ -1,0 +1,236 @@
+\documentclass[letterpaper]{article}
+\usepackage[letterpaper]{geometry}
+\usepackage{amsmath,amsfonts,amsthm,amssymb}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{extramarks}
+\usepackage{chngpage}
+\usepackage{hyperref}
+\usepackage[table]{xcolor}
+\usepackage{graphicx,float}
+\usepackage{multicol,marvosym,dsfont}
+\usepackage{tikz}
+\usepackage{natbib}
+\usepackage{algorithm2e, listings}
+\newcommand{\Class}{CS 1571}
+\newcommand{\ClassInstructor}{Prof. Diane Litman}
+\newcommand{\ClassGrader}{Ahmed Magooda}
+
+% Homework Specific Information. Change it to your own
+\newcommand{\Title}{Homework 3}
+\newcommand{\DueDate}{Nov. 13, 2017}
+\newcommand{\StudentName}{Zac Yu}
+\newcommand{\StudentLDAP}{zhy46@}
+
+% In case you need to adjust margins:
+\topmargin=-0.45in      %
+\evensidemargin=0in     %
+\oddsidemargin=0in      %
+\textwidth=6.5in        %
+\textheight=9.0in       %
+\headsep=0.25in         %
+
+% Setup the header and footer
+\pagestyle{fancy}                                                       %
+\lhead{\StudentName}                                                    %
+\chead{\Title}                                                          %
+\rhead{\firstxmark}                                                     %
+\lfoot{\lastxmark}                                                      %
+\cfoot{}                                                                %
+\rfoot{Page\ \thepage\ of\ \protect\pageref{LastPage}}                  %
+\renewcommand\headrulewidth{0.4pt}                                      %
+\renewcommand\footrulewidth{0.4pt}                                      %
+\renewcommand\implies\Rightarrow
+\fancypagestyle{fpfancy} {
+	\renewcommand{\headrulewidth}{0pt}
+	%
+	\fancyhf{}
+	%
+	\fancyfoot[L]{\lastxmark}
+	%
+	\fancyfoot[R]{Page\ \thepage\ of\ \protect\pageref{LastPage}}
+	%
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Some tools
+\newcommand{\enterProblemHeader}[1]{\nobreak\extramarks{#1}{#1 continued on next page\ldots}\nobreak%
+                                    \nobreak\extramarks{#1 (continued)}{#1 continued on next page\ldots}\nobreak}%
+\newcommand{\exitProblemHeader}[1]{\nobreak\extramarks{#1 (continued)}{#1 continued on next page\ldots}\nobreak%
+                                   \nobreak\extramarks{#1}{}\nobreak}%
+
+\newcommand{\homeworkProblemName}{}%
+\newcounter{homeworkProblemCounter}%
+\newenvironment{homeworkProblem}[1][Problem \arabic{homeworkProblemCounter}]%
+  {\stepcounter{homeworkProblemCounter}%
+   \renewcommand{\homeworkProblemName}{#1}%
+   \section*{\homeworkProblemName}%
+   \enterProblemHeader{\homeworkProblemName}}%
+  {\exitProblemHeader{\homeworkProblemName}}%
+
+\newcommand{\homeworkSectionName}{}%
+\newlength{\homeworkSectionLabelLength}{}%
+\newenvironment{homeworkSection}[1]%
+  {% We put this space here to make sure we're not connected to the above.
+
+   \renewcommand{\homeworkSectionName}{#1}%
+   \settowidth{\homeworkSectionLabelLength}{\homeworkSectionName}%
+   \addtolength{\homeworkSectionLabelLength}{0.25in}%
+   \changetext{}{-\homeworkSectionLabelLength}{}{}{}%
+   \subsection*{\homeworkSectionName}%
+   \enterProblemHeader{\homeworkProblemName\ [\homeworkSectionName]}}%
+  {\enterProblemHeader{\homeworkProblemName}%
+
+   % We put the blank space above in order to make sure this margin
+   % change doesn't happen too soon.
+   \changetext{}{+\homeworkSectionLabelLength}{}{}{}}%
+
+\newcommand{\Answer}{\ \\\textit{\textbf{Answer:}} }
+\newcommand{\Proof}{\ \\\textit{\textbf{Proof:}} }
+\newcommand{\Acknowledgements}[1]{\ \\{\bf Acknowledgements:} #1}
+\newcommand{\Hint}[1]{\ \\{\bf Hint:} #1}
+\newcommand{\Infer}{\Longrightarrow}
+\newcommand{\ud}{\mathrm{d}}
+\newcommand{\Reduce}{\Longleftarrow}
+\newcommand{\Endproof}{\hfill $\Box$\vspace{.05in}\\}
+\newcommand{\T}{\mathrm{T}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\Real}{\mathbb{R}}
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{\node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
+\renewcommand\part[1]{\textbf{(#1)}\vspace{.05in}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand\hlight[1]{\tikz[overlay, remember picture,baseline=-\the\dimexpr\fontdimen22\textfont2\relax]\node[rectangle,rounded corners,draw,thick,text opacity=1] {$#1$};}
+\renewcommand{\arraystretch}{1.25}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Make title
+\title{\textmd{\bf \Class: \Title}\\{\large Instructed by \textit{\ClassInstructor}}\\{\vspace{-0.1in}\small Grader: \textit{\ClassGrader}}\\\normalsize\vspace{0.1in}\small{Due\ on\ \DueDate}}
+%\date{} % --- if you de-comment \date{}, the date will not appear below the title
+\author{\textbf{\StudentName}\ \ (LDAP: \StudentLDAP)}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document} % document starts here
+\maketitle \thispagestyle{fpfancy}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Begin edit from here
+
+\section{Report for FOL Inference: Forward Chaining}
+\subsection{Abstract}
+We explored using the forward chaining algorithm to solve a simplified first-order logic (FOL) system. Specifically, given a number of rules (consist of the premises, a number of atoms, and the conclusion, an atom) followed by facts (atoms), we maintain a knowledge base for the system that contains all possible inferences at any given time. We showed that such system can effectively answer given query to prove a fact. In addition, we backtracking, we can produce a complete proof, if exists, consists of relevant facts and rules, in order, that produce the query using the generalized \textit{modus ponendo ponens} rule. In addition, we explored the possibility to improve the efficiency of the system leveraging the incremental forward chaining algorithm. We analyzed the performance difference between the two implementations.
+\subsection{Implementation Decisions}
+\subsubsection{Input and Data Structures}
+We first observed that the naming of predicates, constants, and variables are irrelevant to the FOL system itself. Therefore, we used two global symbol tables, for predicates and constants, to register the mappings from IDs (increasing non-negative number) to the symbols (strings, respectively the predicate names and the constant names) upon the first encounter. For variables, we noticed that it is not necessarily to preserve the original mapping. Instead, we can normalize the variable names within each rule (see details in the next paragraph).\\
+Each atom can be represented by a tuple of a predicate ID and a list of arguments. Each argument can be either a constant represented by its global ID or a variable. Each rules is a tuple of left-hand side (LHS), the premises, and the right-hand side (RHS), the conclusion. Since the ordering of the atoms that make up the LHS is not important, to normalize the rules, we can sort them by their predicate IDs; after that, we can further normalize the variable names using increasing non-negative numbers as well. Lastly, each variable binding is a mapping (in a dictionary) from a variable to a constant ID.\\
+For example, after processing input line of rule \texttt{Owns(Nono,x) \string^ Missile(x) -> Sells(West,Nono,x)}, we will register predicate symbols \texttt{Owns = 0}, \texttt{Missile = 1}, and \texttt{Sells = 2}; constants \texttt{Nono = 0} and \texttt{West = 1}; and rule \texttt{\{LHS=[(predicate=0, arguments=[(value=0, type=CONSTANT), (value=0, type=VARIABLE)]), (predicate=1, arguments=[(value=0, type=VARIABLE)])], RHS=(predicate=2, arguments=[(value=1, type=CONSTANT), (value=0, type=CONSTANT), (value=0, type=VARIABLE)])\}}.
+\subsubsection{Forward Chaining}
+We invoke the forward chaining algorithm whenever a new fact is added to the knowledge base. To do so, we implemented a recursive procedure called \textit{find and infer}, as illustrated below.\\
+\begin{algorithm}[H]
+	\LinesNumbered
+	\SetKwProg{Fn}{Procedure}{}{}
+	\Fn{\textsc{Find-And-Infer}}{
+		\KwIn{LHS $P=\{p_1,p_2,\ldots,p_n\}$, RHS $q$, bindings $\theta$}
+		\BlankLine
+		\If{$P$ is empty}{
+			$\textsc{Add-Fact}(\textsc{Subst}(\theta, q))$
+			\Return
+		}
+		\For{$p'$ in $KB.facts$}{
+			$\theta' = \textsc{Unify}(\textsc{Subst}(\theta, p_1), p')$
+			\If{$\theta'$ is not \textit{fail}}{
+				$\textsc{Find-And-Infer}(P-p_1, q, \theta+\theta')$
+			}
+		}
+	}
+	\caption{Find and Infer}
+\end{algorithm}\noindent
+Whenever a new fact is added, the \textit{find and infer} procedure runs for every rule in the knowledge base with an initial empty dictionary of bindings. Note that the \textit{add fact} procedure (given below) checks if a fact is already in the knowledge base before adding it to avoid loops and redundant executions. Note that the \textit{substitution (subst)} procedure simply substitutes the bindings into an atom while the \textit{unification (unify)} algorithm is the one given in the homework description\footnote{Available at \url{https://people.cs.pitt.edu/~litman/courses/cs1571/1571f17_HW3_program.html}}.\\
+\begin{algorithm}[H]
+	\LinesNumbered
+	\SetKwProg{Fn}{Procedure}{}{}
+	\Fn{\textsc{Add-Fact}}{
+		\KwIn{fact $p'$}
+		\KwOut{a boolean value indicating if the operation is successful}
+		\BlankLine
+		\If{$p'$ is not a fact}{
+			\Return{False}
+		}
+		\If{$p'$ in $KB.facts$}{
+			\Return{True}
+		}
+		Add $p'$ to $KB.facts$\\
+		\For{$rule$ in $KB.rules$}{
+			$\textsc{Find-And-Infer}(rule.LHS, rule.RHS, \{\})$
+		}
+	}
+	\caption{Add Fact}
+\end{algorithm}
+\subsubsection{Query Answering and Output}
+After each forward chaining procedure, the knowledge base of our system will contain the complete set of facts based on all possible usages of existing facts and rules. Therefore, to answer to some query, we can check if the query itself is contained in the facts.\\
+In order to provide more descriptive proofs, we used a separate dictionary to keep track of the source of each fact, either given as part of the input or produced by application of some \textit{modus ponendo ponens} rule. For the latter case, we can store the rule and bindings used to produce such result. Therefore, when answering a query, we can perform backtracking to provide the complete steps to reach the query, if the query exists in the knowledge base.
+\subsubsection{Incremental Forward Chaining}
+Since every new fact inferred on iteration $t$ must be derived from at least one new fact inferred on iteration $t-1,$ and since we are performing forward chaining on every new incoming fact, instead of iterating over all rules, we can iterate over only rules that has some premise unifiable with the new fact. To further expedite this process and avoid infeasible unifications, we can maintain a set of relevant rules for each predicate ID when registering the rules. The incremental froward chaining version of the \textit{add fact} procedure becomes the following.
+\begin{algorithm}[H]
+	\LinesNumbered
+	\SetKwProg{Fn}{Procedure}{}{}
+	\Fn{\textsc{Add-Fact}}{
+		\KwIn{fact $p'$}
+		\KwOut{a boolean value indicating if the operation is successful}
+		\BlankLine
+		\If{$p'$ is not a fact}{
+			\Return{False}
+		}
+		\If{$p'$ in $KB.facts$}{
+			\Return{True}
+		}
+		Add $p'$ to $KB.facts$\\
+		\For{$rule$ in $KB.relavent_rules[p'.predicate]$}{
+			\For{$p$ in $rule.LHS$}{
+				$\theta=\textsc{Unify}(p, p')$\\
+				\If{$\theta$ is not \textit{fail}}{
+					$\textsc{Find-And-Infer}(rule.LHS - p, rule.RHS, \theta)$
+				}
+			}
+		}
+	}
+	\caption{Add Fact (Incremental Forward Chaining Version)}
+\end{algorithm}
+\subsection{Efficiency Analysis}
+\subsubsection{Measuring Performance}
+We proposed using the following metrics to measure the performance of the algorithm,
+\begin{enumerate}
+	\item The number of forward-chain activations\\
+	The homework requirement assumes one activation of the forward chaining algorithm upon each new fact being added to the knowledge base so this number should be consistent.
+	\item The number of attempted additions of redundant facts\\
+	While inevitable when avoiding infinite loop, the incremental forward chaining algorithm should eliminate all other kinds of the redundancies, so not many redundant facts will be produced (and consequently attempted to be added to the knowledge base).
+	\item The number of performed unifications\\
+	We expect the incremental forward chaining algorithm to attempt fewer unifications than the non-incremental version.
+\end{enumerate}
+All the metrics above can be implemented as global counters in the system that increment when the corresponding actions take place.
+\subsubsection{Result}
+The counter values, for each test case (\texttt{ti} corresponds to \texttt{Testcase\_i} and \texttt{ei} corresponds to \texttt{Example\_i}), are shown in the table below.\bigbreak
+\begin{tabular}{|l|c|c|c|c|c|}
+\hline
+Metrics \textbackslash\ Testcases & \texttt{e1} & \texttt{e2} & \texttt{t1} and \texttt{t2} & \texttt{t3} to \texttt{t7} & \texttt{t8} and \texttt{t9} \\ \hline\hline
+FC forward-chain activations & 10 & 4 & 7 & 17 & 10 \\ \hline
+IFC forward-chain activations & 10 & 4 & 7 & 17 & 10 \\ \hline\hline
+FC redundant facts & 17 & 4 & 12 & 96 & 24 \\ \hline
+IFC redundant facts & 0 & 1 & 0 & 2 & 1 \\ \hline\hline
+FC unifications & 48 & 12 & 27 & 2155 & 61 \\ \hline
+IFC unifications & 47 & 11 & 12 & 193 & 32 \\ \hline
+\end{tabular}
+\subsubsection{Analysis}
+We observe that the forward-chain is activated for the same number of times for both of the nonincremental and incremental versions across all test cases. This is expected because both versions of the algorithm is complete and we expect the same number of unique facts to be added to the knowledge base, each triggering one activation.\\
+In comparison, the incremental forward-chaining algorithm performs fewer unifications and produced much fewer redundant facts. This is because only rules that are relevant to the newly introduced facts are being considered for \textit{find and infer} in the  IFC implementation. In this way, no inference rule will be used twice with the same binding, leading to the exact same conclusion. However, we also note that the redundant facts are not eliminated with IFC. This is because when there is a potential cycle, the redundancy check also serves the purpose of preventing adding the same fact in an infinite loop. For example, when we have inference rule $Same(x, y)\rightarrow Same(y,x)$ and fact $Same(A, B),$ then fact $Same(B, A)$ will be added, followed by $Same(A, B),$ which is redundant.\\
+Finally, we observe that in test cases 3 to 7, the number of unifications are significantly larger for the nonincremental version. This is because of the large branching factor for predicates \texttt{Parent(x, y)} (unifiable with five facts), \texttt{Sibling(x, y)} and \texttt{Cousin(x, y)} (unifiable with five facts). As more inferred facts are introduced, the branches of the execution tree of \textit{find and infer} grows exponentially. The incremental forward-chaining algorithm solves this problems by effectively pruning the branches that has been considered before.\\
+In conclusion, the incremental forward-chaining implementation is more efficient.
+% End edit to here
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\label{LastPage}
+\end{document} % document ends here
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+

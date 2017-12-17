@@ -1,0 +1,31 @@
+------------------------------------ Given ------------------------------------
+Rule TooBig(var0) ^ GoodSize(var1) -> BetterPet(var1, var0)
+Rule Giraffe(var0) -> TooBig(var0)
+Rule Dog(var0) -> GoodSize(var0)
+Rule Barks(var0) ^ WagsTail(var0) -> Dog(var0)
+Fact Giraffe(Bob)
+Fact Barks(Sally)
+Fact WagsTail(Sally)
+------------------------------------ Promt ------------------------------------
+Show that BetterPet(Sally, Bob)
+------------------------------------ Proof ------------------------------------
+From given, Giraffe(Bob)
+By rule Giraffe(var0) -> TooBig(var0) we have TooBig(Bob)
+From given, Barks(Sally)
+From given, WagsTail(Sally)
+By rule Barks(var0) ^ WagsTail(var0) -> Dog(var0) we have Dog(Sally)
+By rule Dog(var0) -> GoodSize(var0) we have GoodSize(Sally)
+By rule TooBig(var0) ^ GoodSize(var1) -> BetterPet(var1, var0) we have BetterPet(Sally, Bob)
+Q.E.D.
+------------------------------------ Stats ------------------------------------
+Activated forward-chain 7 time(s)
+Attempted to add 12 reduncent fact(s)
+Performed 27 unification(s)
+Registered 7 predicate symbol(s)
+Registered 2 constant symbol(s)
+------------------------------------- Raw -------------------------------------
+True
+TooBig(Bob)
+Dog(Sally)
+GoodSize(Sally)
+BetterPet(Sally, Bob)
